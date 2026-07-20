@@ -22,3 +22,12 @@ db.sequelize.sync()
         console.log(err);
     });
 
+app.post("/komik", async (req, res) => {
+    try {
+        const komik = await db.Komik.create(req.body);
+        res.status(201).json(komik);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
